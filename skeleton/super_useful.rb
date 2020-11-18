@@ -28,12 +28,16 @@ rescue StandardError, ArgumentError
   retry if maybe_fruit == "coffee"
   puts "I can't eat that!" if StandardError
   puts "That's not even a food!" if ArgumentError
-
 end  
 
 # PHASE 4
 class BestFriend
+  TooShort = Class.new(ArgumentError) do
+    def message
+
   def initialize(name, yrs_known, fav_pastime)
+    raise "not enough time!" if yrs_known < 5
+    raise "you don't even know me :(" if name.length <= 0 || fav_pastime.length <= 0
     @name = name
     @yrs_known = yrs_known
     @fav_pastime = fav_pastime
